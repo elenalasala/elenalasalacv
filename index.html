@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elena La Sala — cultural producer</title>
+<meta name="description" content="Elena La Sala, cultural producer. Direzione artistica, gestione artisti, produzione di eventi e contenuti.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><rect width='10' height='10' fill='%237B1FFF'/><path d='M0 10A10 10 0 0 1 10 0V10Z' fill='black'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<style>
+:root{
+  --shock:#7B1FFF;      /* il colore di Elena: si cambia qui */
+  --ink:#000;
+  --paper:#fff;
+  --tint:#EFE6FF;
+  --hand:"Reenie Beanie", "Comic Sans MS", cursive;
+  --sans:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:1.125rem;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.wrap{max-width:78rem;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+.hand{font-family:var(--hand);font-weight:400;line-height:1}
+
+/* ---------- HERO: il sistema ---------- */
+.hero{position:relative;min-height:100svh;background:var(--shock);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+#field{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y}
+.hero-text{position:relative;z-index:2;padding:0 clamp(1.25rem,4vw,3rem) clamp(2rem,6vh,4rem);pointer-events:none}
+.name{margin:0;font-weight:900;font-stretch:62%;text-transform:uppercase;line-height:.82;letter-spacing:-.01em;font-size:clamp(4.5rem,19vw,17rem)}
+.name span{display:block;width:fit-content}
+.tag{width:fit-content;margin:1.2rem 0 0;font-size:clamp(1.25rem,2.4vw,1.75rem);font-weight:600;font-stretch:90%;max-width:26ch;position:relative;line-height:1.2}
+.tag .loop{position:absolute;left:-4%;top:-45%;width:108%;height:190%;overflow:visible;pointer-events:none}
+.hero-note{position:absolute;z-index:3;right:clamp(1rem,4vw,3rem);top:clamp(1rem,4vh,2.5rem);text-align:right}
+.hero-note .hand{font-size:1.6rem;display:block;margin-bottom:.4rem}
+.touch{display:none}@media (hover:none){.fine{display:none}.touch{display:inline}}
+.btn{font:inherit;font-weight:700;font-stretch:80%;font-size:1rem;background:var(--ink);color:var(--paper);border:0;padding:.7rem 1.1rem;cursor:pointer;border-radius:0}
+.btn:hover{background:var(--paper);color:var(--ink)}
+.scribble path{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.draw path{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 1.1s cubic-bezier(.6,.1,.3,1) forwards;animation-delay:var(--d,0s)}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* ---------- MANIFESTO ---------- */
+.manifesto{padding:clamp(5rem,12vw,9rem) 0 clamp(4rem,8vw,6rem)}
+.manifesto-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,5vw,5rem);align-items:start}
+.portrait{position:relative;background:var(--shock);aspect-ratio:1}
+.portrait img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;filter:contrast(1.15)}
+.portrait .hand{position:absolute;left:-.3rem;bottom:-2.4rem;font-size:1.7rem;transform:rotate(-4deg)}
+.portrait svg{position:absolute;right:-1.2rem;top:-1.4rem;width:5rem;height:5rem;overflow:visible}
+section h2.big{text-transform:none;letter-spacing:0;font-size:clamp(1.6rem,3.3vw,2.6rem);line-height:1.15;font-weight:500;font-stretch:88%;margin:0 0 1.6rem;max-width:30ch}
+.manifesto p.body{max-width:60ch;margin:0 0 1rem}
+.claim{display:inline-block;margin-top:1.5rem;font-weight:900;font-stretch:70%;text-transform:uppercase;font-size:clamp(1.8rem,4vw,3.2rem);line-height:.95;position:relative}
+.claim svg{position:absolute;left:0;bottom:-.9rem;width:100%;height:1.2rem;overflow:visible}
+
+/* ---------- SEZIONI ---------- */
+section h2{font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:clamp(3rem,9vw,7rem);line-height:.85;margin:0 0 2.5rem;letter-spacing:-.01em}
+.path{padding:clamp(4rem,8vw,6rem) 0;border-top:6px solid var(--ink)}
+.row{display:grid;grid-template-columns:7rem minmax(0,1fr) minmax(0,1.3fr);gap:clamp(1rem,3vw,2.5rem);padding:2rem 0;border-bottom:2px solid var(--ink);align-items:start}
+.row canvas{width:7rem;height:7rem;display:block;cursor:pointer}
+.row .when{font-weight:800;font-stretch:75%;font-size:1.1rem;margin:0 0 .3rem}
+.row h3{margin:0;font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.05;font-weight:800;font-stretch:80%}
+.row .where{margin:.35rem 0 0;font-size:1.05rem}
+.row .what{margin:0;max-width:52ch}
+.row .what ul{margin:0;padding-left:1.1rem}
+.row .what li{margin-bottom:.35rem}
+.row .what li::marker{content:"✕  ";color:var(--shock);font-weight:900}
+
+/* ---------- EVENTI ---------- */
+.events{background:var(--ink);color:var(--paper);padding:clamp(4rem,8vw,6rem) 0}
+.events h2{color:var(--shock)}
+.ev{list-style:none;margin:0;padding:0}
+.ev li{display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem;flex-wrap:wrap;border-top:1px solid #444;padding:1rem 0;transition:padding .25s}
+.ev li:last-child{border-bottom:1px solid #444}
+.ev b{font-weight:800;font-stretch:70%;font-size:clamp(1.6rem,4.4vw,3.4rem);line-height:1;text-transform:uppercase;transition:font-stretch .35s,color .2s}
+.ev small{font-size:1rem;color:#bbb;max-width:32ch;text-align:right}
+.ev li:hover b{font-stretch:125%;color:var(--shock)}
+.events .hand{font-size:1.8rem;color:var(--paper);display:block;margin-top:2rem;transform:rotate(-2deg)}
+
+.ev li{cursor:none}
+.ev li:focus-visible{outline:3px solid var(--shock);outline-offset:4px}
+.peek{position:fixed;left:0;top:0;z-index:15;width:clamp(13rem,24vw,21rem);aspect-ratio:4/5;pointer-events:none;opacity:0;transform:translate3d(-50%,-50%,0) scale(.85) rotate(-3deg);transition:opacity .18s,transform .18s;background:var(--shock);border:3px solid var(--paper)}
+.peek.on{opacity:1;transform:translate3d(-50%,-50%,0) scale(1) rotate(-3deg)}
+.peek img{width:100%;height:100%;object-fit:cover;display:block}
+.peek-n{position:absolute;right:.5rem;bottom:.4rem;font-family:var(--hand);font-size:1.6rem;color:var(--paper);text-shadow:0 0 6px rgba(0,0,0,.5)}
+.ev-strip{display:none}
+@media (hover:none){
+  .ev li{cursor:pointer}
+  .peek{display:none}
+  .ev-strip{display:flex;gap:.5rem;overflow-x:auto;width:100%;padding-top:.8rem;scroll-snap-type:x mandatory}
+  .ev-strip img{flex:0 0 70%;aspect-ratio:4/5;object-fit:cover;scroll-snap-align:start;background:var(--shock)}
+  .ev li:not(.open) .ev-strip{display:none}
+}
+@media (prefers-reduced-motion:reduce){.peek{transition:none}}
+
+/* ---------- CULTURAL PRODUCER ---------- */
+.producer{padding:clamp(4rem,8vw,6rem) 0;border-bottom:6px solid var(--ink)}
+.producer .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,5vw,5rem);align-items:start}
+section.producer h2{margin-bottom:.6rem;color:var(--shock);font-size:clamp(2.8rem,6vw,5.2rem);overflow-wrap:anywhere}
+.producer .pos{font-size:1.9rem;margin:0 0 1.2rem;transform:rotate(-1.5deg);transform-origin:left}
+.producer .def{margin:0;max-width:40ch;font-size:1.2rem;border-left:6px solid var(--shock);padding-left:1rem}
+.big-line{margin:0 0 2rem;font-size:clamp(1.5rem,2.8vw,2.2rem);line-height:1.15;font-weight:700;font-stretch:80%;max-width:26ch}
+.map{margin:0;display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--ink)}
+.map div{padding:1.1rem 1rem 1.3rem 0;border-bottom:2px solid var(--ink)}
+.map div:nth-child(odd){padding-right:1.5rem;border-right:2px solid var(--ink)}
+.map div:nth-child(even){padding-left:1.5rem}
+.map dt{font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:2rem;line-height:.9;margin-bottom:.5rem}
+.map dd{margin:0;font-size:1rem}
+.ev-sub{font-size:clamp(1.8rem,3.4vw,2.6rem);color:var(--paper);margin:-1.6rem 0 2rem;transform:rotate(-2deg);transform-origin:left}
+@media (max-width:860px){
+  .producer .wrap{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .map{grid-template-columns:1fr}
+  .map div:nth-child(odd){border-right:0;padding-right:0}
+  .map div:nth-child(even){padding-left:0}
+}
+
+/* ---------- METODO ---------- */
+.method{padding:clamp(4rem,8vw,6rem) 0}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.steps li{padding:1.5rem 1.25rem 2rem;border-left:2px solid var(--ink);position:relative}
+.steps li:last-child{border-right:2px solid var(--ink)}
+.steps .n{font-weight:900;font-stretch:62%;font-size:4.5rem;line-height:.8;color:var(--shock);display:block;margin-bottom:1rem}
+.steps h3{margin:0 0 .5rem;font-size:1.35rem;font-weight:800;font-stretch:85%;line-height:1.1}
+.steps p{margin:0;font-size:1rem}
+.tools{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2rem;margin-top:4rem;padding-top:2rem;border-top:2px solid var(--ink)}
+.tools h3{margin:0 0 .6rem;font-size:1.1rem;font-weight:800;font-stretch:80%}
+.tools p{margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chips span{border:2px solid var(--ink);padding:.3rem .7rem;font-weight:600;font-stretch:85%;font-size:1rem}
+
+/* ---------- CONTATTI ---------- */
+.contact{background:var(--shock);padding:clamp(4rem,9vw,7rem) 0 3rem;position:relative}
+.contact h2{margin-bottom:1rem}
+.mail{display:inline-block;font-weight:800;font-stretch:75%;font-size:clamp(1.6rem,5.2vw,4.4rem);line-height:1;text-decoration:none;word-break:break-all;border-bottom:6px solid var(--ink);padding-bottom:.2rem}
+.mail:hover{background:var(--ink);color:var(--shock)}
+.actions{display:flex;gap:.8rem;flex-wrap:wrap;margin:2rem 0 3rem}
+.pad-box{position:relative;border:3px solid var(--ink);background:var(--paper)}
+#pad{display:block;width:100%;height:clamp(12rem,30vw,18rem);cursor:crosshair;touch-action:none}
+.pad-box .hand{position:absolute;left:1rem;top:.6rem;font-size:1.8rem;pointer-events:none;color:#555}
+.pad-box .btn{position:absolute;right:.6rem;bottom:.6rem}
+footer{padding:2rem 0 0;font-size:.95rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+
+/* ---------- colori ---------- */
+.swatches{position:fixed;z-index:20;right:max(.8rem,env(safe-area-inset-right));bottom:calc(.8rem + env(safe-area-inset-bottom,0px));display:flex;gap:.4rem;background:var(--paper);border:2px solid var(--ink);padding:.35rem}
+.swatches button{width:1.6rem;height:1.6rem;border:2px solid var(--ink);cursor:pointer;padding:0;background:var(--c)}
+.swatches button[aria-pressed="true"]{outline:3px solid var(--ink);outline-offset:1px}
+
+@media (max-width:860px){
+  .manifesto-grid{grid-template-columns:1fr}
+  .portrait{max-width:24rem}
+  .row{grid-template-columns:4.5rem minmax(0,1fr)}
+  .row canvas{width:4.5rem;height:4.5rem}
+  .row .what{grid-column:2}
+  .steps{grid-template-columns:1fr 1fr}
+  .steps li:nth-child(2){border-right:2px solid var(--ink)}
+  .steps li:nth-child(n+3){border-top:2px solid var(--ink)}
+  .tools{grid-template-columns:1fr}
+  .ev small{text-align:left}
+  .hero-note .hand{font-size:1.35rem}
+}
+@media (max-width:480px){.steps{grid-template-columns:1fr}.steps li{border-right:2px solid var(--ink)}.steps li+li{border-top:2px solid var(--ink)}}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .draw path{animation:none;stroke-dashoffset:0}
+  .ev li:hover b{font-stretch:70%}
+}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="hero-note">
+    <span class="hand"><span class="fine">passaci sopra col mouse ↙</span><span class="touch">toccalo ↙</span></span>
+    <button class="btn" id="shuffle" type="button">Rimescola il sistema</button>
+  </div>
+  <div class="hero-text" id="heroText">
+    <h1 class="name"><span>Elena</span><span>La Sala</span></h1>
+    <p class="tag">Cultural producer. Costruisco un'idea, poi la faccio funzionare.
+      <svg class="loop scribble draw" viewBox="0 0 300 100" preserveAspectRatio="none" aria-hidden="true">
+        <path style="--len:900;--d:.5s" d="M40 20 C120 -4 262 2 290 40 C312 78 200 98 120 94 C40 90 4 72 8 48 C12 22 70 10 150 8 C210 7 250 12 268 20"/>
+      </svg>
+    </p>
+  </div>
+</header>
+
+<main>
+
+<section class="manifesto" aria-labelledby="chi">
+  <div class="wrap manifesto-grid">
+    <figure class="portrait" style="margin:0">
+      <img src="elena.jpg" alt="Ritratto di Elena La Sala" width="900" height="900">
+      <svg class="scribble" viewBox="0 0 80 80" aria-hidden="true"><path d="M10 40 L70 40 M40 10 L40 70 M18 18 L62 62 M62 18 L18 62"/></svg>
+      <figcaption class="hand">sono io ↑</figcaption>
+    </figure>
+    <div>
+      <h2 id="chi" class="big">Ho fatto la direttrice artistica e la producer. Ho scritto i copy e organizzato gli shooting, ho seguito gli artisti e i clienti.</h2>
+      <p class="body">Ho lavorato su progetti in tutte le loro fasi, dal brief alla consegna, dal concept alla serata. Conoscere i processi da più punti di vista mi permette di leggere tempi e complessità prima che diventino problemi, e di coordinare persone diverse con consapevolezza.</p>
+      <p class="body">Mi sono formata all'Accademia di Belle Arti di Napoli, dalla triennale in Nuove Tecnologie dell'Arte alla magistrale in New Media Art, e prima ancora nella scenografia: so come si monta uno spazio, non solo come si racconta.</p>
+      <p class="claim">So costruire un'idea.<br>E farla funzionare.
+        <svg class="scribble" viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 12 C60 4 120 18 180 9 C220 4 260 14 298 6"/></svg>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="path" aria-labelledby="percorso">
+  <div class="wrap">
+    <h2 id="percorso">Percorso</h2>
+
+    <article class="row">
+      <canvas data-seed="2026" aria-hidden="true"></canvas>
+      <div>
+        <p class="when">2026 — oggi</p>
+        <h3>Senior account manager</h3>
+        <p class="where">Corticom</p>
+      </div>
+      <div class="what"><p style="margin:0">Relazione con i clienti e coordinamento dei progetti.</p></div>
+    </article>
+
+    <article class="row">
+      <canvas data-seed="2024" aria-hidden="true"></canvas>
+      <div>
+        <p class="when">2024 — 2025</p>
+        <h3>Project manager</h3>
+        <p class="where">Renna Creative Agency</p>
+      </div>
+      <div class="what"><ul>
+        <li>Ho gestito i progetti dal brief alla consegna finale.</li>
+        <li>Ho coordinato il team creativo e organizzato le attività operative: shooting, contenuti, flussi di lavoro.</li>
+        <li>Ho seguito direttamente i clienti, tenendo allineate esigenze strategiche e sviluppo creativo.</li>
+      </ul></div>
+    </article>
+
+    <article class="row">
+      <canvas data-seed="2022" aria-hidden="true"></canvas>
+      <div>
+        <p class="when">2022 — 2023</p>
+        <h3>Artist manager e direzione artistica</h3>
+        <p class="where">Visit Irpinia, start-up</p>
+      </div>
+      <div class="what"><ul>
+        <li>Direzione artistica e coordinamento creativo di eventi culturali.</li>
+        <li>Gestione degli artisti, sviluppo dei concept, organizzazione dei progetti.</li>
+        <li>Eventi principali: Distretto Creativo e Irpinia Mood.</li>
+      </ul></div>
+    </article>
+
+    <article class="row">
+      <canvas data-seed="2018" aria-hidden="true"></canvas>
+      <div>
+        <p class="when">2018 — 2022</p>
+        <h3>Apprendistato nei progetti culturali</h3>
+        <p class="where">Accademia di Belle Arti di Napoli</p>
+      </div>
+      <div class="what"><p style="margin:0">Il mio apprendistato: quattro anni dentro progetti culturali veri con l'Accademia, da Procida Capitale Italiana della Cultura 2022 a cinque edizioni di #CuoreDiNapoli, mentre studiavo. Lì ho imparato come funziona una macchina culturale guardandola lavorare da dentro.</p></div>
+    </article>
+  </div>
+</section>
+
+<section class="events" aria-labelledby="eventi">
+  <div class="wrap">
+    <h2 id="eventi">Luoghi che ho abitato</h2>
+    <p class="hand ev-sub">…e da cui mi sono fatta abitare.</p>
+    <ul class="ev">
+      <li tabindex="0" data-slug="procida" data-n="3"><b>Procida Capitale della Cultura</b><small>2022, con l'Accademia di Belle Arti di Napoli</small></li>
+      <li tabindex="0" data-slug="cuore-di-napoli" data-n="3"><b>#CuoreDiNapoli</b><small>edizioni dal 2018 al 2022</small></li>
+      <li tabindex="0" data-slug="tedx" data-n="3"><b>TEDx #CuoreDiNapoli</b><small>con l'Accademia di Belle Arti di Napoli</small></li>
+      <li tabindex="0" data-slug="futuro-remoto" data-n="3"><b>Futuro Remoto</b><small>“Transizioni”</small></li>
+      <li tabindex="0" data-slug="zzz" data-n="3"><b>Z.Z.Z. Zona Zero Zanzare</b><small>Festival del Bacio</small></li>
+      <li tabindex="0" data-slug="distretto-creativo" data-n="3"><b>Distretto Creativo</b><small>direzione artistica, Visit Irpinia</small></li>
+      <li tabindex="0" data-slug="irpinia-mood" data-n="3"><b>Irpinia Mood</b><small>direzione artistica, Visit Irpinia</small></li>
+    </ul>
+  </div>
+</section>
+
+<section class="producer" aria-labelledby="producer">
+  <div class="wrap">
+    <div class="entry">
+      <h2 id="producer">Cultural producer</h2>
+      <p class="pos hand">chi sta tra l'idea e il pubblico</p>
+      <p class="def">Chi fa produzione culturale traduce una visione artistica in cose che accadono: calendario, persone, spazi, risorse, comunicazione. Custodisce l'idea finché non arriva davanti a qualcuno, intatta.</p>
+    </div>
+    <div class="fit">
+      <p class="big-line">È il lavoro che ho fatto in ogni ruolo, anche quando si chiamava in un altro modo.</p>
+      <dl class="map">
+        <div><dt>La visione</dt><dd>Direzione artistica e gestione degli artisti per Distretto Creativo e Irpinia Mood, con Visit Irpinia.</dd></div>
+        <div><dt>La macchina</dt><dd>Progetti seguiti dal brief alla consegna in Renna Creative Agency: team, shooting, contenuti, tempi.</dd></div>
+        <div><dt>Le relazioni</dt><dd>Oggi da senior account manager in Corticom: la cura di chi commissiona e l'allineamento tra quello che si vuole e quello che si può fare.</dd></div>
+        <div><dt>Il racconto</dt><dd>Grafica, social e copy fatti con le mie mani, perché un evento esiste anche per come viene comunicato.</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="method" aria-labelledby="come">
+  <div class="wrap">
+    <h2 id="come">Come lavoro</h2>
+    <ol class="steps">
+      <li><span class="n">1</span><h3>Ascolto il brief</h3><p>Capisco cosa serve davvero, a chi, con quali tempi e quali risorse.</p></li>
+      <li><span class="n">2</span><h3>Disegno il concept</h3><p>Direzione artistica e supervisione visiva: l'idea prende una forma riconoscibile.</p></li>
+      <li><span class="n">3</span><h3>Metto insieme le persone</h3><p>Artisti, team creativo, clienti. Coordino gruppi multidisciplinari e tengo tutti sulla stessa linea.</p></li>
+      <li><span class="n">4</span><h3>Lo faccio accadere</h3><p>Produzione, shooting, contenuti grafici, social e copy. Problem solving fino all'ultimo minuto.</p></li>
+    </ol>
+    <div class="tools">
+      <div>
+        <h3>Strumenti</h3>
+        <div class="chips"><span>Illustrator</span><span>Photoshop</span><span>Premiere Pro</span><span>After Effects</span></div>
+      </div>
+      <div>
+        <h3>Formazione e lingue</h3>
+        <p>Laurea magistrale in New Media Art, Accademia di Belle Arti di Napoli. Laurea triennale in Nuove Tecnologie dell'Arte, Accademia di Belle Arti di Napoli (2018–2022). Diploma di Scenografia, Liceo Artistico “P.A. De Luca”, Avellino. Italiano madrelingua, inglese base.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" aria-labelledby="scrivi">
+  <div class="wrap">
+    <h2 id="scrivi">Scrivimi</h2>
+    <a class="mail" href="mailto:elenalasala.99@gmail.com">elenalasala.99@gmail.com</a>
+    <div class="actions">
+      <a class="btn" href="cv-elena-la-sala.pdf" download style="text-decoration:none">Scarica il CV in PDF</a>
+    </div>
+    <div class="pad-box">
+      <canvas id="pad" aria-label="Spazio per disegnare uno scarabocchio"></canvas>
+      <span class="hand">lascia uno scarabocchio qui</span>
+      <button class="btn" id="clear" type="button">Cancella</button>
+    </div>
+    <footer><span>Elena La Sala, cultural producer</span><a href="#top">Torna su</a></footer>
+  </div>
+</section>
+
+</main>
+
+<div class="peek" id="peek" aria-hidden="true"><img alt=""><span class="peek-n"></span></div>
+
+<div class="swatches" role="group" aria-label="Cambia il colore del sito">
+  <button type="button" style="--c:#7B1FFF" data-c="#7B1FFF" aria-label="Viola" aria-pressed="true"></button>
+  <button type="button" style="--c:#FF2E88" data-c="#FF2E88" aria-label="Fucsia" aria-pressed="false"></button>
+  <button type="button" style="--c:#FF5A00" data-c="#FF5A00" aria-label="Arancio" aria-pressed="false"></button>
+  <button type="button" style="--c:#1F4BFF" data-c="#1F4BFF" aria-label="Blu elettrico" aria-pressed="false"></button>
+</div>
+
+<script>
+(() => {
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+let SHOCK = css('--shock');
+
+/* ---- un sistema di moduli: vuoto, quadrato, quarto di cerchio, mezzo cerchio, cerchio, triangolo, arco ---- */
+function mod(ctx, x, y, s, type, rot, fg){
+  ctx.save(); ctx.translate(x + s/2, y + s/2); ctx.rotate(rot); ctx.translate(-s/2, -s/2);
+  ctx.fillStyle = fg; ctx.strokeStyle = fg; ctx.beginPath();
+  switch(type){
+    case 1: ctx.rect(0,0,s,s); ctx.fill(); break;
+    case 2: ctx.moveTo(0,s); ctx.arc(0,s,s,-Math.PI/2,0); ctx.closePath(); ctx.fill(); break;
+    case 3: ctx.arc(s/2,s,s/2,Math.PI,0); ctx.closePath(); ctx.fill(); break;
+    case 4: ctx.arc(s/2,s/2,s/2,0,Math.PI*2); ctx.fill(); break;
+    case 5: ctx.moveTo(0,0); ctx.lineTo(s,s); ctx.lineTo(0,s); ctx.closePath(); ctx.fill(); break;
+    case 6: ctx.lineWidth = s*.18; ctx.arc(0,s,s*.7,-Math.PI/2,0); ctx.stroke(); break;
+  }
+  ctx.restore();
+}
+function rng(seed){ let t = seed >>> 0; return () => { t += 0x6D2B79F5; let r = Math.imul(t ^ t>>>15, 1|t); r ^= r + Math.imul(r ^ r>>>7, 61|r); return ((r ^ r>>>14)>>>0)/4294967296; }; }
+const pickType = r => { const v = r(); return v<.34?0 : v<.46?1 : v<.64?2 : v<.74?3 : v<.82?4 : v<.92?5 : 6; };
+const Q = Math.PI/2;
+
+/* ---- HERO ---- */
+const field = document.getElementById('field'), fx = field.getContext('2d'), heroText = document.getElementById('heroText');
+let cells = [], cols, rows, size, dpr, anim = false, seed = Date.now() % 100000;
+
+function layout(){
+  dpr = Math.min(devicePixelRatio || 1, 2);
+  const w = field.clientWidth, h = field.clientHeight;
+  field.width = w*dpr; field.height = h*dpr; fx.setTransform(dpr,0,0,dpr,0,0);
+  size = Math.max(56, Math.round(Math.min(w,h)/6.5));
+  cols = Math.ceil(w/size); rows = Math.ceil(h/size);
+  build();
+}
+function build(){
+  const r = rng(seed), hr = field.getBoundingClientRect(), pad = size*.25;
+  // il sistema lascia spazio al contenuto: nome, riga, nota
+  const boxes = [...heroText.querySelectorAll('.name span, .tag'), document.querySelector('.hero-note')].map(el => {
+    const b = el.getBoundingClientRect(); return {l:b.left-hr.left-pad, t:b.top-hr.top-pad, r:b.right-hr.left+pad, b:b.bottom-hr.top+pad};
+  });
+  cells = [];
+  for(let j=0;j<rows;j++) for(let i=0;i<cols;i++){
+    const x=i*size, y=j*size;
+    const reserved = boxes.some(q => x+size>q.l && x<q.r && y+size>q.t && y<q.b);
+    const rot = Math.floor(r()*4)*Q;
+    cells.push({i,j,x,y,type: reserved?0:pickType(r), fg: r()<.72?'#000':'#fff', rot, trot:rot, reserved});
+  }
+  draw();
+}
+function draw(){
+  fx.clearRect(0,0,field.width,field.height);
+  let moving = false;
+  for(const c of cells){
+    if(Math.abs(c.trot-c.rot)>.001){ c.rot += (c.trot-c.rot)*.18; moving = true; } else c.rot = c.trot;
+    if(c.type) mod(fx,c.x,c.y,size,c.type,c.rot,c.fg);
+  }
+  if(moving && !reduce){ anim = true; requestAnimationFrame(draw); } else anim = false;
+}
+function kick(){ if(!anim) draw(); }
+let last = -1;
+const poke = e => {
+  const b = field.getBoundingClientRect(), i = Math.floor((e.clientX-b.left)/size), j = Math.floor((e.clientY-b.top)/size), k = j*cols+i;
+  if(k===last || !cells[k] || cells[k].reserved) return; last = k;
+  const c = cells[k];
+  if(c.type===0){ c.type = 1 + Math.floor(Math.random()*6); c.fg = Math.random()<.7?'#000':'#fff'; }
+  c.trot += Q; if(reduce) c.rot = c.trot; kick();
+};
+field.addEventListener('pointermove', poke); field.addEventListener('pointerdown', e => { last = -1; poke(e); });
+document.getElementById('shuffle').addEventListener('click', () => { seed = Math.floor(Math.random()*1e6); build(); });
+addEventListener('resize', () => { clearTimeout(window.__rt); window.__rt = setTimeout(() => { layout(); glyphs.forEach(g=>g.render()); }, 120); });
+
+/* ---- glifi del percorso: ogni periodo ha la sua composizione 3×3 ---- */
+const glyphs = [...document.querySelectorAll('.row canvas')].map(cv => {
+  let s = +cv.dataset.seed;
+  const g = { render(){
+    const d = Math.min(devicePixelRatio||1,2), W = cv.clientWidth; cv.width = cv.height = W*d;
+    const x = cv.getContext('2d'); x.setTransform(d,0,0,d,0,0); x.fillStyle = SHOCK; x.fillRect(0,0,W,W);
+    const r = rng(s), m = W/3;
+    for(let j=0;j<3;j++) for(let i=0;i<3;i++){ const t = pickType(r) || (r()<.5?2:0); if(t) mod(x,i*m,j*m,m,t,Math.floor(r()*4)*Q,r()<.8?'#000':'#fff'); }
+  }};
+  cv.parentElement.addEventListener('mouseenter', () => { s = Math.floor(Math.random()*1e6); g.render(); });
+  cv.addEventListener('click', () => { s = Math.floor(Math.random()*1e6); g.render(); });
+  return g;
+});
+
+/* ---- scarabocchi: lunghezze reali per l'animazione ---- */
+document.querySelectorAll('.draw path').forEach(p => p.style.setProperty('--len', Math.ceil(p.getTotalLength())+1));
+
+/* ---- pad per scarabocchiare ---- */
+const pad = document.getElementById('pad'), px = pad.getContext('2d');
+function sizePad(){ const d = Math.min(devicePixelRatio||1,2); pad.width = pad.clientWidth*d; pad.height = pad.clientHeight*d; px.setTransform(d,0,0,d,0,0); px.lineCap = px.lineJoin = 'round'; }
+let down = false, lx, ly;
+const pos = e => { const b = pad.getBoundingClientRect(); return [e.clientX-b.left, e.clientY-b.top]; };
+pad.addEventListener('pointerdown', e => { down = true; [lx,ly] = pos(e); pad.setPointerCapture(e.pointerId); });
+pad.addEventListener('pointermove', e => {
+  if(!down) return; const [x,y] = pos(e), v = Math.hypot(x-lx,y-ly);
+  px.strokeStyle = SHOCK; px.lineWidth = Math.max(2, 9 - v*.25);
+  px.beginPath(); px.moveTo(lx,ly); px.lineTo(x,y); px.stroke(); lx=x; ly=y;
+});
+['pointerup','pointercancel'].forEach(t => pad.addEventListener(t, () => down = false));
+document.getElementById('clear').addEventListener('click', () => px.clearRect(0,0,pad.width,pad.height));
+
+
+/* ---- portfolio: immagini al passaggio sugli eventi ----
+   Le foto vanno in img/<slug>-1.jpg, img/<slug>-2.jpg ... (lo slug è in data-slug, il numero in data-n).
+   Se un file manca, al suo posto compare una tavola generata dal sistema. */
+const peek = document.getElementById('peek'), peekImg = peek.querySelector('img'), peekN = peek.querySelector('.peek-n');
+const srcs = li => Array.from({length:+li.dataset.n}, (_,k) => `img/${li.dataset.slug}-${k+1}.jpg`);
+function placeholder(li, k){
+  const W = 400, H = 500, c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d'); x.fillStyle = SHOCK; x.fillRect(0,0,W,H);
+  let h = 0; for(const ch of li.dataset.slug+k) h = (h*31 + ch.charCodeAt(0))>>>0;
+  const r = rng(h), m = 100;
+  for(let j=0;j<5;j++) for(let i=0;i<4;i++){ const t = pickType(r); if(t) mod(x,i*m,j*m,m,t,Math.floor(r()*4)*Q,r()<.75?'#000':'#fff'); }
+  x.fillStyle = '#000'; x.fillRect(0,H-70,W,70); x.fillStyle = '#fff';
+  const label = li.querySelector('b').textContent; let fs = 22; do { x.font = `700 ${fs}px Archivo, Arial, sans-serif`; fs--; } while(x.measureText(label).width > W-36 && fs > 12); x.fillText(label, 18, H-40);
+  x.font = '16px Archivo, Arial, sans-serif'; x.fillText(`foto ${k+1} in arrivo`, 18, H-16);
+  return c.toDataURL();
+}
+function setImg(img, li, k){
+  img.onerror = () => { img.onerror = null; img.src = placeholder(li, k); };
+  img.src = srcs(li)[k];
+}
+// precarica
+document.querySelectorAll('.ev li').forEach(li => srcs(li).forEach(u => { const i = new Image(); i.src = u; }));
+
+let cur = null, idx = 0, travel = 0, px0 = 0, py0 = 0;
+function show(li, x, y){
+  cur = li; idx = 0; travel = 0; setImg(peekImg, li, 0); peekN.textContent = `1/${li.dataset.n}`;
+  move(x, y); peek.classList.add('on');
+}
+function move(x, y){ peek.style.left = x+'px'; peek.style.top = y+'px'; }
+function next(){ idx = (idx+1) % +cur.dataset.n; setImg(peekImg, cur, idx); peekN.textContent = `${idx+1}/${cur.dataset.n}`; }
+document.querySelectorAll('.ev li').forEach(li => {
+  li.addEventListener('pointerenter', e => { if(e.pointerType==='mouse'){ px0 = e.clientX; py0 = e.clientY; show(li, e.clientX, e.clientY); } });
+  li.addEventListener('pointermove', e => {
+    if(e.pointerType!=='mouse' || cur!==li) return;
+    move(e.clientX, e.clientY);
+    travel += Math.hypot(e.clientX-px0, e.clientY-py0); px0 = e.clientX; py0 = e.clientY;
+    if(travel > 110){ travel = 0; next(); }   // al movimento del puntatore cambia immagine
+  });
+  li.addEventListener('pointerleave', () => { if(cur===li){ peek.classList.remove('on'); cur = null; } });
+  // tastiera: con il focus si vede la prima immagine, Invio passa alla successiva
+  li.addEventListener('focus', () => { const b = li.getBoundingClientRect(); show(li, Math.min(innerWidth-200, b.right-160), b.top + b.height/2); });
+  li.addEventListener('blur', () => peek.classList.remove('on'));
+  li.addEventListener('keydown', e => { if((e.key==='Enter'||e.key===' ') && cur===li){ e.preventDefault(); next(); } });
+  // touch: tocca per aprire una striscia di immagini da scorrere
+  const strip = document.createElement('div'); strip.className = 'ev-strip';
+  srcs(li).forEach((_,k) => { const im = document.createElement('img'); im.alt = `${li.querySelector('b').textContent}, immagine ${k+1}`; im.loading = 'lazy'; setImg(im, li, k); strip.appendChild(im); });
+  li.appendChild(strip);
+  li.addEventListener('click', e => { if(matchMedia('(hover:none)').matches && !strip.contains(e.target)) li.classList.toggle('open'); });
+});
+
+/* ---- cambio colore ---- */
+document.querySelectorAll('.swatches button').forEach(b => b.addEventListener('click', () => {
+  SHOCK = b.dataset.c; document.documentElement.style.setProperty('--shock', SHOCK);
+  document.querySelectorAll('.swatches button').forEach(o => o.setAttribute('aria-pressed', o===b));
+  glyphs.forEach(g => g.render());
+}));
+
+document.fonts.ready.then(() => { layout(); sizePad(); glyphs.forEach(g=>g.render()); });
+layout(); sizePad(); glyphs.forEach(g=>g.render());
+})();
+</script>
+</body>
+</html>
