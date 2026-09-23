@@ -328,7 +328,7 @@ footer{padding:2rem 0 0;font-size:.95rem;display:flex;justify-content:space-betw
 <section class="manifesto" aria-labelledby="chi">
   <div class="wrap manifesto-grid">
     <figure class="portrait" style="margin:0">
-      <img src="elena.jpg" alt="Ritratto di Elena La Sala" width="900" height="900">
+      <img id="portrait" alt="Ritratto di Elena La Sala" width="900" height="900">
       <svg class="scribble" viewBox="0 0 80 80" aria-hidden="true"><path d="M10 40 L70 40 M40 10 L40 70 M18 18 L62 62 M62 18 L18 62"/></svg>
       <figcaption class="hand">sono io ↑</figcaption>
     </figure>
@@ -737,7 +737,14 @@ const PROJECTS = {
    Le foto vanno in img/<slug>-1.jpg, img/<slug>-2.jpg ... (lo slug è in data-slug, il numero in data-n).
    Se un file manca, al suo posto compare una tavola generata dal sistema. */
 const peek = document.getElementById('peek'), peekImg = peek.querySelector('img'), peekN = peek.querySelector('.peek-n');
-const srcs = li => Array.from({length:+li.dataset.n}, (_,k) => `img/${li.dataset.slug}-${k+1}.jpg`);
+const srcs = li => Array.from({length:+li.dataset.n}, (_,k) => `img/${li.dataset.slug}-${k+1}`);
+// il file può essere .jpg, .jpeg, .png o .webp, anche con l'estensione in maiuscolo: le provo tutte
+const EXTS = ['jpg','jpeg','png','webp','JPG','JPEG','PNG','WEBP'];
+function tryExts(img, base, fail){
+  let i = 0;
+  const next = () => { if(i >= EXTS.length){ img.onerror = null; if(fail) fail(); return; } img.onerror = next; img.src = `${base}.${EXTS[i++]}`; };
+  next();
+}
 function placeholder(li, k, file){
   const W = 400, H = 500, c = document.createElement('canvas'); c.width = W; c.height = H;
   const x = c.getContext('2d'); x.fillStyle = SHOCK; x.fillRect(0,0,W,H);
@@ -751,11 +758,10 @@ function placeholder(li, k, file){
   return c.toDataURL();
 }
 function setImg(img, li, k){
-  img.onerror = () => { img.onerror = null; img.src = placeholder(li, k); };
-  img.src = srcs(li)[k];
+  tryExts(img, srcs(li)[k], () => { img.src = placeholder(li, k, `img/${li.dataset.slug}-${k+1}.jpg`); });
 }
 // precarica
-document.querySelectorAll('.ev li').forEach(li => { if(+li.dataset.n) srcs(li).forEach(u => { const i = new Image(); i.src = u; }); });
+document.querySelectorAll('.ev li').forEach(li => { if(+li.dataset.n) srcs(li).forEach(u => { const i = new Image(); i.src = u + '.jpg'; }); });
 
 let cur = null, idx = 0, travel = 0, px0 = 0, py0 = 0;
 function show(li, x, y){
@@ -846,9 +852,9 @@ function renderStory(P){
     const x = cv.getContext('2d'); x.setTransform(d,0,0,d,0,0);
     x.fillStyle = SHOCK; x.fillRect(0,0,W,W); mod(x,0,0,W,type,0,'#000');
   });
-  story.querySelectorAll('img[data-link]').forEach(im => { im.onerror = () => { im.onerror = null; im.src = placeholder(sheetLi, 'link', `img/${sheetLi.dataset.slug}-link-${im.dataset.link}.jpg`); }; im.src = `img/${sheetLi.dataset.slug}-link-${im.dataset.link}.jpg`; });
+  story.querySelectorAll('img[data-link]').forEach(im => { tryExts(im, `img/${sheetLi.dataset.slug}-link-${im.dataset.link}`, () => { im.src = placeholder(sheetLi, 'link', `img/${sheetLi.dataset.slug}-link-${im.dataset.link}.jpg`); }); });
   const ii = document.getElementById('ig-img');
-  if(ii){ ii.onerror = () => { ii.onerror = null; ii.src = placeholder(sheetLi, 'link', `img/${sheetLi.dataset.slug}-ig.jpg`); }; ii.src = `img/${sheetLi.dataset.slug}-ig.jpg`;
+  if(ii){ tryExts(ii, `img/${sheetLi.dataset.slug}-ig`, () => { ii.src = placeholder(sheetLi, 'link', `img/${sheetLi.dataset.slug}-ig.jpg`); });
     document.getElementById('ig-load').addEventListener('click', () => loadInstagram(P.instagram)); }
 }
 function openSheet(li, push = true){
@@ -912,6 +918,8 @@ function fromHash(){ const src = sheetSrc(location.hash.slice(1)); if(src && PRO
 addEventListener('popstate', fromHash);
 if(location.hash) fromHash();
 
+// ritratto: elena.jpg, .png, .jpeg o .webp
+tryExts(document.getElementById('portrait'), 'elena');
 // post Instagram: si carica solo su richiesta
 function loadInstagram(url){
   const box = document.getElementById('igbox'); if(!box) return;
