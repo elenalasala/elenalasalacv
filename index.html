@@ -41,7 +41,7 @@ a{color:inherit}
 .hero-note{position:absolute;z-index:3;right:clamp(1rem,4vw,3rem);top:clamp(1rem,4vh,2.5rem);text-align:right}
 .hero-note .hand{font-size:1.6rem;display:block;margin-bottom:.4rem}
 .touch{display:none}@media (hover:none){.fine{display:none}.touch{display:inline}}
-.btn{font:inherit;font-weight:700;font-stretch:80%;font-size:1rem;background:var(--ink);color:var(--paper);border:0;padding:.7rem 1.1rem;cursor:pointer;border-radius:0}
+.btn{white-space:nowrap;font:inherit;font-weight:700;font-stretch:80%;font-size:1rem;background:var(--ink);color:var(--paper);border:0;padding:.7rem 1.1rem;cursor:pointer;border-radius:0}
 .btn:hover{background:var(--paper);color:var(--ink)}
 .scribble path{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .draw path{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 1.1s cubic-bezier(.6,.1,.3,1) forwards;animation-delay:var(--d,0s)}
@@ -50,9 +50,9 @@ a{color:inherit}
 /* ---------- MANIFESTO ---------- */
 .manifesto{padding:clamp(5rem,12vw,9rem) 0 clamp(4rem,8vw,6rem)}
 .manifesto-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,5vw,5rem);align-items:start}
-.portrait{position:relative;background:var(--shock);aspect-ratio:1}
-.portrait img{width:100%;height:100%;object-fit:cover;mix-blend-mode:multiply;filter:contrast(1.15)}
-.portrait .hand{position:absolute;left:-.3rem;bottom:-2.4rem;font-size:1.7rem;transform:rotate(-4deg)}
+.portrait{position:relative;aspect-ratio:1;border:4px solid var(--ink);box-shadow:1.1rem 1.1rem 0 var(--shock),1.1rem 1.1rem 0 4px var(--ink)}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.portrait .hand{position:absolute;left:-.3rem;bottom:-4rem;font-size:1.7rem;transform:rotate(-4deg)}
 .portrait svg{position:absolute;right:-1.2rem;top:-1.4rem;width:5rem;height:5rem;overflow:visible}
 section h2.big{text-transform:none;letter-spacing:0;font-size:clamp(1.6rem,3.3vw,2.6rem);line-height:1.15;font-weight:500;font-stretch:88%;margin:0 0 1.6rem;max-width:30ch}
 .manifesto p.body{max-width:60ch;margin:0 0 1rem}
@@ -121,6 +121,137 @@ section.producer h2{margin-bottom:.6rem;color:var(--shock);font-size:clamp(2.8re
   .map div:nth-child(odd){border-right:0;padding-right:0}
   .map div:nth-child(even){padding-left:0}
 }
+
+/* ---------- SCHEDA PROGETTO ---------- */
+.ev li.has-sheet b::after{content:" ↗";font-stretch:100%;font-size:.6em;vertical-align:.35em;color:var(--shock)}
+.peek-cta{display:none;position:absolute;left:0;right:0;top:100%;margin-top:.4rem;background:var(--paper);color:var(--ink);font-weight:700;font-stretch:80%;font-size:.95rem;padding:.35rem .6rem;text-align:center}
+.peek.cta .peek-cta{display:block}
+body.locked{overflow:hidden}
+.sheet{position:fixed;inset:0;z-index:30;background:var(--paper);overflow-y:auto;overscroll-behavior:contain}
+.sheet[hidden]{display:none}
+.sheet-top{background:var(--shock);padding:calc(1.5rem + env(safe-area-inset-top,0px)) 0 1.5rem;position:sticky;top:0;z-index:2}
+.sheet-head{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem}
+.sheet-meta{margin:0 0 .3rem;font-weight:700;font-stretch:80%;font-size:1.05rem}
+section h2#sheet-title,#sheet-title{margin:0;font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:clamp(2.8rem,8vw,6.5rem);line-height:.85}
+.sheet-grid.nogal{grid-template-columns:minmax(0,1fr);max-width:52rem}
+.sheet-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(1.5rem,4vw,4rem);padding-top:2.5rem;padding-bottom:calc(4rem + env(safe-area-inset-bottom,0px));align-items:start}
+.gal{position:sticky;top:10rem}
+.gal-main{margin:0;background:var(--shock);aspect-ratio:4/5;max-height:70vh;position:relative}
+.gal-main img{width:100%;height:100%;object-fit:cover;display:block}
+.gal-main figcaption{position:absolute;left:0;bottom:0;background:var(--ink);color:var(--paper);font-size:.95rem;padding:.4rem .7rem;max-width:90%}
+.gal-main figcaption:empty{display:none}
+.gal-ctrl{display:flex;align-items:center;gap:.8rem;margin-top:.8rem}
+.gal-ctrl .hand{font-size:1.8rem;min-width:3.5rem;text-align:center}
+.gal-thumbs{display:flex;gap:.5rem;margin-top:.8rem;overflow-x:auto}
+.gal-thumbs button{flex:0 0 4.2rem;height:5.2rem;padding:0;border:3px solid transparent;background:var(--shock);cursor:pointer}
+.gal-thumbs button[aria-current="true"]{border-color:var(--ink)}
+.gal-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.story h3{margin:0 0 .5rem;font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:2rem;line-height:.9}
+.story .blk{margin-bottom:2rem}
+.story .blk p{margin:0}
+.story .role{font-size:clamp(1.3rem,2.2vw,1.7rem);font-weight:700;font-stretch:82%;line-height:1.15;border-left:6px solid var(--shock);padding-left:.9rem}
+.proc{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.proc li{display:grid;grid-template-columns:3.2rem minmax(0,1fr);gap:1rem;padding:1rem 0;border-bottom:2px solid var(--ink);align-items:start}
+.proc canvas{width:3.2rem;height:3.2rem;display:block}
+.proc .t{font-weight:800;font-stretch:80%;font-size:1.15rem;margin:0 0 .2rem;line-height:1.1}
+.proc .t span{color:var(--shock);font-weight:900;margin-right:.35rem}
+.linkcard{display:grid;grid-template-columns:7rem minmax(0,1fr);gap:1rem;align-items:center;border:3px solid var(--ink);text-decoration:none;padding:.6rem}
+.linkcard:hover{background:var(--shock)}
+.linkcard img{width:7rem;height:5rem;object-fit:cover;background:var(--shock)}
+.linkcard b{display:block;font-weight:800;font-stretch:82%;font-size:1.1rem;line-height:1.1}
+.linkcard small{font-size:.95rem}
+.story .quote{font-size:clamp(2rem,3.4vw,2.8rem);margin:1.2rem 0 0;transform:rotate(-1.5deg);transform-origin:left;color:var(--shock)}
+.links{display:grid;gap:.7rem}
+.linkcard{color:inherit}
+.igbox{border:3px solid var(--ink);background:var(--shock);padding:.7rem}
+.ig-cover{display:grid;grid-template-columns:8rem minmax(0,1fr);gap:1rem;align-items:center}
+.ig-cover img{width:8rem;height:10rem;object-fit:cover;background:var(--ink);border:3px solid var(--paper)}
+.ig-cover b{display:block;font-weight:900;font-stretch:65%;text-transform:uppercase;font-size:1.7rem;line-height:.95;margin-bottom:.6rem}
+.ig-cover small{display:block;margin-top:.6rem;font-size:.85rem;line-height:1.3}
+.gal-main figcaption a{color:var(--paper)}
+.todo{border:2px dashed var(--ink);padding:.5rem .7rem;font-family:var(--hand);font-size:1.5rem;line-height:1;margin:.6rem 0 0;background:var(--tint)}
+@media (max-width:860px){
+  .sheet-grid{grid-template-columns:1fr}
+  .gal{position:static}
+  .gal-main{max-height:none}
+  .sheet-top{padding:calc(.9rem + env(safe-area-inset-top,0px)) 0 .9rem}
+  #sheet-title{font-size:clamp(2.2rem,11vw,3.4rem)}
+  .sheet-head{align-items:center}
+  .sheet-grid{padding-top:1.5rem}
+}
+
+/* ---------- PASSAGGIO AI PROGETTI ---------- */
+.jump{margin:1rem 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:.5rem}
+.jump .hand{font-size:1.6rem;margin-right:.3rem}
+.jump button{font:inherit;font-weight:800;font-stretch:80%;font-size:1rem;background:var(--shock);color:var(--ink);border:2px solid var(--ink);padding:.35rem .8rem;cursor:pointer}
+.jump button:hover{background:var(--ink);color:var(--shock)}
+.teaser{display:block;text-decoration:none;color:inherit;padding-top:clamp(1rem,2vw,1.5rem)}
+.teaser-note{display:flex;align-items:flex-end;gap:1rem}
+.teaser-note .hand{font-size:clamp(2.2rem,4.6vw,3.6rem);margin:0 0 1.2rem;transform:rotate(-2deg);transform-origin:left}
+.arrow{width:clamp(3.5rem,6vw,5rem);height:auto;overflow:visible;flex:none}
+.arrow path{stroke-width:4}
+.teaser.in .arrow path{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw .9s cubic-bezier(.6,.1,.3,1) forwards}
+.teaser.in .arrow path+path{animation-delay:.7s}
+.teaser .arrow{animation:nudge 1.6s ease-in-out 2s infinite}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+.marquee{background:var(--shock);border-top:6px solid var(--ink);overflow:hidden;white-space:nowrap}
+.marquee-in{display:inline-flex;animation:slide 22s linear infinite}
+.marquee span{font-weight:900;font-stretch:62%;text-transform:uppercase;font-size:clamp(3rem,9vw,7.5rem);line-height:1.05;padding:.1em 0}
+@keyframes slide{to{transform:translateX(-50%)}}
+.teaser:hover .marquee-in{animation-duration:8s}
+.ev-how{font-size:1.9rem;color:var(--paper);margin:1.8rem 0 0;transform:rotate(-1.5deg);transform-origin:left}
+@media (prefers-reduced-motion:reduce){.marquee-in,.teaser .arrow{animation:none}.teaser.in .arrow path{animation:none;stroke-dashoffset:0}}
+
+/* ---------- CRESCERE E CONNETTERE ---------- */
+.grow{padding:clamp(4rem,8vw,6rem) 0;background:var(--tint);border-top:6px solid var(--ink)}
+.grow h2{font-size:clamp(2.8rem,7.5vw,6.2rem);margin-bottom:3rem}
+.grow h2 span{display:block}
+.grow h2 .c2{color:var(--shock)}
+.grow-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2rem,5vw,4.5rem);align-items:start}
+.g-kicker{font-size:2.2rem;margin:0 0 1rem;transform:rotate(-2deg);transform-origin:left}
+.g-item{border-top:2px solid var(--ink);padding:1.2rem 0}
+.g-item:last-child{border-bottom:2px solid var(--ink)}
+.g-item p{margin:0}
+.g-item b{font-weight:800;font-stretch:80%}
+.team{display:grid;grid-template-columns:repeat(6,1fr);gap:.4rem;margin-bottom:.7rem;max-width:22rem}
+.team i{aspect-ratio:1;background:var(--shock);display:block;transform:scale(0);transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
+.team i:first-child{background:var(--ink);border-radius:50% 50% 0 0}
+.team i:nth-child(2){border-radius:0 100% 0 0}.team i:nth-child(3){border-radius:50%}.team i:nth-child(4){border-radius:50% 50% 0 0}.team i:nth-child(5){clip-path:polygon(0 0,100% 100%,0 100%)}
+.grow.in .team i{transform:scale(1)}
+.grow.in .team i:nth-child(2){transition-delay:.35s}.grow.in .team i:nth-child(3){transition-delay:.55s}.grow.in .team i:nth-child(4){transition-delay:.75s}.grow.in .team i:nth-child(5){transition-delay:.95s}.grow.in .team i:nth-child(6){transition-delay:1.15s}
+.g-lbl{font-weight:800;font-stretch:80%;font-size:1.05rem;margin-bottom:.6rem!important}
+.g-lbl .hand{font-size:1.9rem;color:var(--shock)}
+.g-intro{font-size:clamp(1.25rem,2.1vw,1.55rem);line-height:1.25;font-weight:600;font-stretch:85%;margin:0 0 1rem}
+.net{position:relative;background:var(--paper);border:3px solid var(--ink)}
+#net-svg{display:block;width:100%;height:auto}
+#net-svg .ln{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;transition:stroke .2s,stroke-width .2s,opacity .2s}
+#net-svg .ln.main{stroke-width:3}
+#net-svg text{font-family:var(--sans);fill:var(--ink)}
+#net-svg .sub{font-size:14px;font-weight:600;font-stretch:85%}
+#net-svg .grp{font-size:17px;font-weight:900;font-stretch:65%;text-transform:uppercase;letter-spacing:.02em}
+#net-svg .me{font-family:var(--hand);font-size:34px}
+#net-svg .node{cursor:pointer}
+#net-svg .dot{fill:var(--ink)}
+#net-svg.focus .ln,#net-svg.focus .sub,#net-svg.focus .dot{opacity:.15}
+#net-svg.focus .on .ln,#net-svg.focus .on .sub,#net-svg.focus .on .dot{opacity:1}
+#net-svg .on .ln{stroke:var(--shock);stroke-width:3}
+#net-svg .on .ln.main{stroke-width:5}
+#net-svg .on .dot{fill:var(--shock)}
+.grow .draw-net .ln{stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.grow.in .draw-net .ln{animation:draw 1s cubic-bezier(.6,.1,.3,1) forwards;animation-delay:var(--d,0s)}
+.net-hint{position:absolute;right:.8rem;bottom:.5rem;font-size:1.4rem;margin:0;color:#555}
+.net-list{display:none}
+@media (max-width:860px){.grow-grid{grid-template-columns:1fr}}
+@media (max-width:600px){
+  #net-svg,.net-hint{display:none}
+  .net{padding:1rem}
+  .net-list{display:block}
+  .net-list h4{margin:.9rem 0 .4rem;font-weight:900;font-stretch:65%;text-transform:uppercase;font-size:1.3rem;color:var(--shock)}
+  .net-list h4:first-child{margin-top:0}
+  .net-list p{margin:0;display:flex;flex-wrap:wrap;gap:.35rem}
+  .net-list span{border:2px solid var(--ink);padding:.15rem .5rem;font-weight:600;font-stretch:85%;font-size:.95rem}
+}
+@media (prefers-reduced-motion:reduce){.team i{transform:none;transition:none}.grow .draw-net .ln{stroke-dasharray:none;stroke-dashoffset:0;animation:none!important}}
 
 /* ---------- METODO ---------- */
 .method{padding:clamp(4rem,8vw,6rem) 0}
@@ -212,6 +343,39 @@ footer{padding:2rem 0 0;font-size:.95rem;display:flex;justify-content:space-betw
   </div>
 </section>
 
+<section class="grow" aria-labelledby="cresco">
+  <div class="wrap">
+    <h2 id="cresco"><span>Faccio crescere le cose.</span><span class="c2">E metto in contatto le persone.</span></h2>
+
+    <div class="grow-grid">
+      <div class="g-col">
+        <p class="g-kicker hand">crescere ↓</p>
+        <div class="g-item g-team">
+          <div class="team" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <p class="g-lbl"><span class="hand">1</span> founder <span class="hand">→ circa 6</span> persone</p>
+          <p><b>Renna Creative.</b> Sono entrata quando c'era solo il founder e ho contribuito a costruire e organizzare il team, diventando il punto di raccordo tra clienti, direzione e produzione.</p>
+        </div>
+        <div class="g-item">
+          <p><b>Irpinia Mood Food Festival.</b> Ho preso in mano la programmazione musicale a organizzazione già avanzata, con tempi strettissimi, e l'ho portata a chiusura: booking, management, quattro giornate.</p>
+        </div>
+        <div class="g-item">
+          <p><b>Capocastello Distretto Creativo.</b> La prima edizione: un borgo medievale trasformato per tre giorni in uno spazio culturale diffuso, con tre palchi accesi insieme.</p>
+        </div>
+      </div>
+
+      <div class="g-col">
+        <p class="g-kicker hand">connettere ↓</p>
+        <p class="g-intro">Il mio lavoro è stare in mezzo: tra chi immagina e chi realizza, tra chi commissiona e chi produce, tra un artista e il suo pubblico.</p>
+        <div class="net" id="net">
+          <svg id="net-svg" viewBox="0 0 780 580" role="img" aria-label="Mappa delle persone e delle realtà che Elena ha messo in contatto"></svg>
+          <div class="net-list" id="net-list"></div>
+          <p class="net-hint hand">passa sopra un gruppo ↑</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="path" aria-labelledby="percorso">
   <div class="wrap">
     <h2 id="percorso">Percorso</h2>
@@ -219,7 +383,7 @@ footer{padding:2rem 0 0;font-size:.95rem;display:flex;justify-content:space-betw
     <article class="row">
       <canvas data-seed="2026" aria-hidden="true"></canvas>
       <div>
-        <p class="when">2026 — oggi</p>
+        <p class="when">2025 — oggi</p>
         <h3>Senior account manager</h3>
         <p class="where">Corticom</p>
       </div>
@@ -229,29 +393,32 @@ footer{padding:2rem 0 0;font-size:.95rem;display:flex;justify-content:space-betw
     <article class="row">
       <canvas data-seed="2024" aria-hidden="true"></canvas>
       <div>
-        <p class="when">2024 — 2025</p>
+        <p class="when">2024 — 2026</p>
         <h3>Project manager</h3>
         <p class="where">Renna Creative Agency</p>
       </div>
       <div class="what"><ul>
-        <li>Ho gestito i progetti dal brief alla consegna finale.</li>
-        <li>Ho coordinato il team creativo e organizzato le attività operative: shooting, contenuti, flussi di lavoro.</li>
-        <li>Ho seguito direttamente i clienti, tenendo allineate esigenze strategiche e sviluppo creativo.</li>
-      </ul></div>
+        <li>Sono entrata con il solo founder e ho contribuito a far crescere l'agenzia fino a un team di circa sei persone.</li>
+        <li>Ero il principale punto di raccordo tra clienti, direzione e produzione creativa, dal primo contatto alla consegna.</li>
+        <li>Clienti PMI e del territorio, eventi privati ed enti istituzionali, tra cui il Comune di Avellino.</li>
+        <li>Preventivi, costi e contratti: la sostenibilità economica delle commesse.</li>
+      </ul>
+      <p class="jump"><span class="hand">apri la scheda →</span><button type="button" data-open="renna">Renna Creative ↗</button></p></div>
     </article>
 
     <article class="row">
       <canvas data-seed="2022" aria-hidden="true"></canvas>
       <div>
-        <p class="when">2022 — 2023</p>
+        <p class="when">2022 — 2024</p>
         <h3>Artist manager e direzione artistica</h3>
         <p class="where">Visit Irpinia, start-up</p>
       </div>
       <div class="what"><ul>
         <li>Direzione artistica e coordinamento creativo di eventi culturali.</li>
         <li>Gestione degli artisti, sviluppo dei concept, organizzazione dei progetti.</li>
-        <li>Eventi principali: Distretto Creativo e Irpinia Mood.</li>
-      </ul></div>
+        <li>Eventi principali: Irpinia Mood Food Festival e Capocastello Distretto Creativo.</li>
+      </ul>
+      <p class="jump"><span class="hand">apri le schede →</span><button type="button" data-open="irpinia-mood">Irpinia Mood ↗</button><button type="button" data-open="distretto-creativo">Capocastello ↗</button></p></div>
     </article>
 
     <article class="row">
@@ -266,6 +433,16 @@ footer{padding:2rem 0 0;font-size:.95rem;display:flex;justify-content:space-betw
   </div>
 </section>
 
+<a class="teaser" href="#eventi" aria-label="Scorri giù fino ai progetti">
+  <div class="wrap teaser-note">
+    <p class="hand">fin qui i ruoli. adesso la parte bella:</p>
+    <svg class="scribble arrow" viewBox="0 0 120 160" aria-hidden="true"><path d="M58 6 C40 30 80 50 60 78 C44 100 70 118 62 146"/><path d="M40 124 C50 134 56 142 62 150 C70 138 78 130 88 122"/></svg>
+  </div>
+  <div class="marquee" aria-hidden="true"><div class="marquee-in">
+    <span>i progetti ✕ i palchi ✕ gli artisti ✕ le serate ✕ i borghi ✕ i festival ✕&nbsp;</span><span>i progetti ✕ i palchi ✕ gli artisti ✕ le serate ✕ i borghi ✕ i festival ✕&nbsp;</span>
+  </div></div>
+</a>
+
 <section class="events" aria-labelledby="eventi">
   <div class="wrap">
     <h2 id="eventi">Luoghi che ho abitato</h2>
@@ -273,12 +450,13 @@ footer{padding:2rem 0 0;font-size:.95rem;display:flex;justify-content:space-betw
     <ul class="ev">
       <li tabindex="0" data-slug="procida" data-n="3"><b>Procida Capitale della Cultura</b><small>2022, con l'Accademia di Belle Arti di Napoli</small></li>
       <li tabindex="0" data-slug="cuore-di-napoli" data-n="3"><b>#CuoreDiNapoli</b><small>edizioni dal 2018 al 2022</small></li>
-      <li tabindex="0" data-slug="tedx" data-n="3"><b>TEDx #CuoreDiNapoli</b><small>con l'Accademia di Belle Arti di Napoli</small></li>
-      <li tabindex="0" data-slug="futuro-remoto" data-n="3"><b>Futuro Remoto</b><small>“Transizioni”</small></li>
-      <li tabindex="0" data-slug="zzz" data-n="3"><b>Z.Z.Z. Zona Zero Zanzare</b><small>Festival del Bacio</small></li>
-      <li tabindex="0" data-slug="distretto-creativo" data-n="3"><b>Distretto Creativo</b><small>direzione artistica, Visit Irpinia</small></li>
-      <li tabindex="0" data-slug="irpinia-mood" data-n="3"><b>Irpinia Mood</b><small>direzione artistica, Visit Irpinia</small></li>
+      <li tabindex="0" data-slug="tedx" data-n="0"><b>TEDx #CuoreDiNapoli</b><small>con l'Accademia di Belle Arti di Napoli</small></li>
+      <li tabindex="0" data-slug="futuro-remoto" data-n="0"><b>Futuro Remoto</b><small>“Transizioni”</small></li>
+      <li tabindex="0" data-slug="zzz" data-n="0"><b>Z.Z.Z. Zona Zero Zanzare</b><small>Festival del Bacio</small></li>
+      <li tabindex="0" data-slug="distretto-creativo" data-n="3"><b>Capocastello Distretto Creativo</b><small>2023, produzione e artisti, Visit Irpinia</small></li>
+      <li tabindex="0" data-slug="irpinia-mood" data-n="3"><b>Irpinia Mood Food Festival</b><small>2023, direzione artistica musicale, Visit Irpinia</small></li>
     </ul>
+    <p class="hand ev-how"><span class="fine">passa sopra per le foto, clicca per la storia completa ↗</span><span class="touch">tocca un progetto per le foto e la storia ↗</span></p>
   </div>
 </section>
 
@@ -293,8 +471,8 @@ footer{padding:2rem 0 0;font-size:.95rem;display:flex;justify-content:space-betw
       <p class="big-line">È il lavoro che ho fatto in ogni ruolo, anche quando si chiamava in un altro modo.</p>
       <dl class="map">
         <div><dt>La visione</dt><dd>Direzione artistica e gestione degli artisti per Distretto Creativo e Irpinia Mood, con Visit Irpinia.</dd></div>
-        <div><dt>La macchina</dt><dd>Progetti seguiti dal brief alla consegna in Renna Creative Agency: team, shooting, contenuti, tempi.</dd></div>
-        <div><dt>Le relazioni</dt><dd>Oggi da senior account manager in Corticom: la cura di chi commissiona e l'allineamento tra quello che si vuole e quello che si può fare.</dd></div>
+        <div><dt>La macchina</dt><dd>Progetti seguiti dal brief alla consegna in Renna Creative Agency: team, tempi, preventivi, contratti. E il budget delle quattro giornate di Irpinia Mood.</dd></div>
+        <div><dt>Le relazioni</dt><dd>Artisti e management, collettivi, service, team, clienti ed enti: il mio lavoro è metterli in contatto. Oggi lo faccio da senior account manager in Corticom.</dd></div>
         <div><dt>Il racconto</dt><dd>Grafica, social e copy fatti con le mie mani, perché un evento esiste anche per come viene comunicato.</dd></div>
       </dl>
     </div>
@@ -326,7 +504,7 @@ footer{padding:2rem 0 0;font-size:.95rem;display:flex;justify-content:space-betw
 <section class="contact" aria-labelledby="scrivi">
   <div class="wrap">
     <h2 id="scrivi">Scrivimi</h2>
-    <a class="mail" href="mailto:elenalasala.99@gmail.com">elenalasala.99@gmail.com</a>
+    <a class="mail" href="mailto:elena.lasala@proton.me">elena.lasala@proton.me</a>
     <div class="actions">
       <a class="btn" href="cv-elena-la-sala.pdf" download style="text-decoration:none">Scarica il CV in PDF</a>
     </div>
@@ -341,7 +519,34 @@ footer{padding:2rem 0 0;font-size:.95rem;display:flex;justify-content:space-betw
 
 </main>
 
-<div class="peek" id="peek" aria-hidden="true"><img alt=""><span class="peek-n"></span></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden>
+  <div class="sheet-top">
+    <div class="wrap sheet-head">
+      <div>
+        <p class="sheet-meta" id="sheet-meta"></p>
+        <h2 id="sheet-title"></h2>
+      </div>
+      <button class="btn" id="sheet-close" type="button">Chiudi ✕</button>
+    </div>
+  </div>
+  <div class="wrap sheet-grid">
+    <div class="gal">
+      <figure class="gal-main">
+        <img id="gal-img" alt="">
+        <figcaption id="gal-cap"></figcaption>
+      </figure>
+      <div class="gal-ctrl">
+        <button class="btn" id="gal-prev" type="button" aria-label="Foto precedente">←</button>
+        <span id="gal-n" class="hand"></span>
+        <button class="btn" id="gal-next" type="button" aria-label="Foto successiva">→</button>
+      </div>
+      <div class="gal-thumbs" id="gal-thumbs"></div>
+    </div>
+    <div class="story" id="story"></div>
+  </div>
+</div>
+
+<div class="peek" id="peek" aria-hidden="true"><img alt=""><span class="peek-n"></span><span class="peek-cta">clicca: apri la scheda</span></div>
 
 <div class="swatches" role="group" aria-label="Cambia il colore del sito">
   <button type="button" style="--c:#7B1FFF" data-c="#7B1FFF" aria-label="Viola" aria-pressed="true"></button>
@@ -455,20 +660,94 @@ pad.addEventListener('pointermove', e => {
 document.getElementById('clear').addEventListener('click', () => px.clearRect(0,0,pad.width,pad.height));
 
 
+
+/* ================================================================
+   SCHEDE PROGETTO
+   Per aggiungere un progetto: copia il blocco di irpinia-mood,
+   cambia la chiave con lo slug della riga (data-slug) e riempi i campi.
+   I campi lasciati vuoti ('') non compaiono sul sito.
+   Per vedere cosa manca, apri il sito aggiungendo ?bozza all'indirizzo.
+   links:     [{ label: 'Il festival su Instagram', url: 'https://www.instagram.com/...' }, ...]
+              anteprime: img/<slug>-link-1.jpg, img/<slug>-link-2.jpg ... (se mancano, tavola viola)
+   instagram: indirizzo di UN post o reel da mostrare; si carica solo se chi visita clicca.
+              anteprima: img/<slug>-ig.jpg
+   captions:  'testo'  oppure  { text: 'il palco la sera', credit: '@fotografo', url: 'https://...' }
+   ================================================================ */
+const PROJECTS = {
+  'irpinia-mood': {
+    title: 'Irpinia Mood Food Festival',
+    when: '2023',
+    where: 'Complesso Monumentale Carcere Borbonico, Avellino',
+    with: 'Visit Irpinia',
+    context: "Quattro giornate di festival attorno al tema «Rimanenze»: un concept sul valore di ciò che resta, sul recupero e sulla possibilità di trasformare quello che sembra uno scarto in nuova materia.",
+    role: "Direzione artistica della programmazione musicale e artist management.",
+    quote: "Dal primo contatto con l'artista fino alla sua salita sul palco.",
+    steps: {
+      brief:    "Sono entrata in una fase già avanzata dell'organizzazione, con tempi di produzione molto stretti: bisognava chiudere la programmazione musicale di quattro giornate.",
+      concept:  "Ho costruito una line-up capace di accompagnare l'identità contemporanea del festival e il tema «Rimanenze».",
+      persone:  "Scouting, contatto e negoziazione con artisti e management, booking, anche in collaborazione con Sometimes Collective. Tra gli artisti: Coco Maria, Generic Animal, Delicatoni.",
+      accadere: "Ho gestito il budget delle quattro giornate, le esigenze tecniche e le hospitality. Durante il festival ho seguito ogni giornata: arrivi, coordinamento con service, palco, luci e fonico, soundcheck, tempi, assistenza durante e dopo le esibizioni. Allestimento e produzione del palco con Orchestra Marchetti."
+    },
+    numbers: '4 giornate di festival',
+    links: [],
+    instagram: '',
+    captions: ['', '', '']
+  },
+  'renna': {
+    title: 'Renna Creative',
+    when: '2024 — 2026',
+    where: 'Avellino',
+    with: 'Agenzia di comunicazione',
+    context: "Un'agenzia di comunicazione di Avellino. Sono entrata quando c'era solo il founder e ho contribuito a farla crescere fino a un team di circa sei persone, diventando il principale punto di raccordo operativo tra clienti, direzione e produzione creativa.",
+    role: "Project management, account e client management, coordinamento creativo e operativo.",
+    quote: "Dal primo contatto con il cliente alla consegna.",
+    steps: {
+      brief:    "Rapporto diretto con i clienti, soprattutto PMI e attività del territorio, eventi privati ed enti istituzionali tra cui il Comune di Avellino: raccolta del brief, analisi delle esigenze, priorità, presentazione delle proposte, gestione dei feedback.",
+      concept:  "Concept e direzioni creative per clienti, campagne, contenuti ed eventi: l'impostazione visiva e comunicativa dei progetti e la coerenza di quello che produceva il team.",
+      persone:  "Ho partecipato a costruire e organizzare un team multidisciplinare di circa sei persone: assegnazione delle attività, coordinamento delle figure creative e produttive, avanzamento dei lavori.",
+      accadere: "Richieste trasformate in attività, deliverable e scadenze; grafica, contenuti e piani editoriali social; organizzazione e coordinamento degli shooting; preventivi, costi e contratti delle commesse; le operations quotidiane dell'agenzia."
+    },
+    numbers: 'da 1 a circa 6 persone nel team',
+    links: [],
+    instagram: '',
+    captions: []   // nessuna foto: la scheda si apre senza galleria
+  },
+  'distretto-creativo': {
+    title: 'Capocastello Distretto Creativo',
+    when: '2023, prima edizione',
+    where: 'Capocastello',
+    with: 'Visit Irpinia',
+    context: "Per tre giorni il borgo medievale di Capocastello diventa uno spazio culturale diffuso di arte, musica, performance e territorio. La musica è su tre stage, Concezione, Vagno e Mulino, in tre punti diversi di un borgo che si sviluppa in altezza.",
+    role: "Produzione operativa dell'evento e gestione completa degli artisti musicali.",
+    quote: "Tre palchi accesi insieme, un borgo in salita, nessuna interruzione.",
+    steps: {
+      brief:    "La sfida: garantire un coordinamento costante tra tre palchi attivi nello stesso momento, con attività e performance in contemporanea.",
+      concept:  "Il concept del distretto era già definito dall'organizzazione: io sono entrata nella produzione operativa e nella gestione degli artisti musicali, dando forma concreta a un'idea che esisteva già.",
+      persone:  "Rapporti e booking con oltre 15 progetti tra live, DJ set e performance, tra cui Samuel Cyma, Sandri, Kuma, FLKTS, Azul Band, Gamino, 2Moellers, Altea, I Sordi e Doppelhandel.",
+      accadere: "Esigenze tecniche, hospitality e arrivi, raccordo con service e fonici, soundcheck, timetable, cambi palco. Durante le serate mi sono mossa di continuo tra le aree del borgo, intervenendo su artisti e produzione perché la programmazione andasse avanti senza interruzioni."
+    },
+    numbers: '3 giorni · 3 stage · oltre 15 progetti',
+    links: [],
+    instagram: '',
+    captions: ['', '', '']
+  }
+};
+
 /* ---- portfolio: immagini al passaggio sugli eventi ----
    Le foto vanno in img/<slug>-1.jpg, img/<slug>-2.jpg ... (lo slug è in data-slug, il numero in data-n).
    Se un file manca, al suo posto compare una tavola generata dal sistema. */
 const peek = document.getElementById('peek'), peekImg = peek.querySelector('img'), peekN = peek.querySelector('.peek-n');
 const srcs = li => Array.from({length:+li.dataset.n}, (_,k) => `img/${li.dataset.slug}-${k+1}.jpg`);
-function placeholder(li, k){
+function placeholder(li, k, file){
   const W = 400, H = 500, c = document.createElement('canvas'); c.width = W; c.height = H;
   const x = c.getContext('2d'); x.fillStyle = SHOCK; x.fillRect(0,0,W,H);
   let h = 0; for(const ch of li.dataset.slug+k) h = (h*31 + ch.charCodeAt(0))>>>0;
   const r = rng(h), m = 100;
   for(let j=0;j<5;j++) for(let i=0;i<4;i++){ const t = pickType(r); if(t) mod(x,i*m,j*m,m,t,Math.floor(r()*4)*Q,r()<.75?'#000':'#fff'); }
-  x.fillStyle = '#000'; x.fillRect(0,H-70,W,70); x.fillStyle = '#fff';
-  const label = li.querySelector('b').textContent; let fs = 22; do { x.font = `700 ${fs}px Archivo, Arial, sans-serif`; fs--; } while(x.measureText(label).width > W-36 && fs > 12); x.fillText(label, 18, H-40);
-  x.font = '16px Archivo, Arial, sans-serif'; x.fillText(`foto ${k+1} in arrivo`, 18, H-16);
+  x.fillStyle = '#000'; x.fillRect(0,H-96,W,96); x.fillStyle = '#fff';
+  const label = li.querySelector('b').textContent; let fs = 22; do { x.font = `700 ${fs}px Archivo, Arial, sans-serif`; fs--; } while(x.measureText(label).width > W-36 && fs > 12); x.fillText(label, 18, H-64);
+  x.font = '16px Archivo, Arial, sans-serif'; x.fillText(typeof k === "number" ? `foto ${k+1} in arrivo` : "anteprima in arrivo", 18, H-42);
+  x.fillStyle = '#b48cff'; x.font = '700 15px Archivo, Arial, sans-serif'; x.fillText(file || (typeof k === "number" ? `img/${li.dataset.slug}-${k+1}.jpg` : ''), 18, H-16);
   return c.toDataURL();
 }
 function setImg(img, li, k){
@@ -476,16 +755,18 @@ function setImg(img, li, k){
   img.src = srcs(li)[k];
 }
 // precarica
-document.querySelectorAll('.ev li').forEach(li => srcs(li).forEach(u => { const i = new Image(); i.src = u; }));
+document.querySelectorAll('.ev li').forEach(li => { if(+li.dataset.n) srcs(li).forEach(u => { const i = new Image(); i.src = u; }); });
 
 let cur = null, idx = 0, travel = 0, px0 = 0, py0 = 0;
 function show(li, x, y){
+  peek.classList.toggle('cta', !!PROJECTS[li.dataset.slug]);
   cur = li; idx = 0; travel = 0; setImg(peekImg, li, 0); peekN.textContent = `1/${li.dataset.n}`;
   move(x, y); peek.classList.add('on');
 }
 function move(x, y){ peek.style.left = x+'px'; peek.style.top = y+'px'; }
 function next(){ idx = (idx+1) % +cur.dataset.n; setImg(peekImg, cur, idx); peekN.textContent = `${idx+1}/${cur.dataset.n}`; }
 document.querySelectorAll('.ev li').forEach(li => {
+  if(!+li.dataset.n) return;   // progetti senza foto: nessuna anteprima
   li.addEventListener('pointerenter', e => { if(e.pointerType==='mouse'){ px0 = e.clientX; py0 = e.clientY; show(li, e.clientX, e.clientY); } });
   li.addEventListener('pointermove', e => {
     if(e.pointerType!=='mouse' || cur!==li) return;
@@ -497,13 +778,211 @@ document.querySelectorAll('.ev li').forEach(li => {
   // tastiera: con il focus si vede la prima immagine, Invio passa alla successiva
   li.addEventListener('focus', () => { const b = li.getBoundingClientRect(); show(li, Math.min(innerWidth-200, b.right-160), b.top + b.height/2); });
   li.addEventListener('blur', () => peek.classList.remove('on'));
-  li.addEventListener('keydown', e => { if((e.key==='Enter'||e.key===' ') && cur===li){ e.preventDefault(); next(); } });
+  li.addEventListener('keydown', e => { if(PROJECTS[li.dataset.slug]) return; if((e.key==='Enter'||e.key===' ') && cur===li){ e.preventDefault(); next(); } });
   // touch: tocca per aprire una striscia di immagini da scorrere
   const strip = document.createElement('div'); strip.className = 'ev-strip';
   srcs(li).forEach((_,k) => { const im = document.createElement('img'); im.alt = `${li.querySelector('b').textContent}, immagine ${k+1}`; im.loading = 'lazy'; setImg(im, li, k); strip.appendChild(im); });
   li.appendChild(strip);
-  li.addEventListener('click', e => { if(matchMedia('(hover:none)').matches && !strip.contains(e.target)) li.classList.toggle('open'); });
+  li.addEventListener('click', e => { if(PROJECTS[li.dataset.slug]) return; if(matchMedia('(hover:none)').matches && !strip.contains(e.target)) li.classList.toggle('open'); });
 });
+
+
+/* ---- scheda progetto: apertura, galleria, racconto ---- */
+const DRAFT = new URLSearchParams(location.search).has('bozza');
+const sheet = document.getElementById('sheet'), story = document.getElementById('story');
+const galImg = document.getElementById('gal-img'), galCap = document.getElementById('gal-cap'), galN = document.getElementById('gal-n'), thumbs = document.getElementById('gal-thumbs');
+// se un passo non l'ha fatto Elena, la scheda lo dice comunque: nessun passo resta vuoto
+const STEP_DEFAULT = {
+  brief:    "Il brief era già definito quando sono entrata: sono partita da lì.",
+  concept:  "Il concept era già definito: il mio lavoro è partito da quella idea.",
+  persone:  "Le persone coinvolte erano già scelte: le ho accompagnate nel progetto.",
+  accadere: "La realizzazione era affidata ad altri: io ho seguito il resto del processo."
+};
+const STEPS = [['brief','Ascolto il brief',2],['concept','Disegno il concept',4],['persone','Metto insieme le persone',3],['accadere','Lo faccio accadere',5]];
+const esc = t => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const todo = label => DRAFT ? `<p class="todo">da completare: ${label}</p>` : '';
+let sheetLi = null, gi = 0, lastFocus = null;
+
+function galShow(k){
+  const n = +sheetLi.dataset.n; if(!n) return;
+  const P = PROJECTS[sheetLi.dataset.slug];
+  gi = (k + n) % n; setImg(galImg, sheetLi, gi);
+  galImg.alt = `${P.title}, immagine ${gi+1} di ${n}`;
+  const C = (P.captions && P.captions[gi]) || '';
+  const ct = typeof C === 'string' ? {text:C} : C;
+  galCap.innerHTML = [ct.text ? esc(ct.text) : '', ct.credit ? (ct.url ? `foto di <a href="${esc(ct.url)}" target="_blank" rel="noopener">${esc(ct.credit)} ↗</a>` : `foto di ${esc(ct.credit)}`) : ''].filter(Boolean).join(' · ');
+  galN.textContent = `${gi+1}/${n}`;
+  thumbs.querySelectorAll('button').forEach((b,i) => b.setAttribute('aria-current', i===gi));
+}
+function renderStory(P){
+  const meta = [P.when, P.where, P.with].filter(Boolean).join(' · ');
+  document.getElementById('sheet-meta').textContent = meta;
+  document.getElementById('sheet-title').textContent = P.title;
+  let h = '';
+  h += `<div class="blk"><h3>Contesto</h3>${P.context ? `<p>${esc(P.context)}</p>` : ''}${!P.when ? todo('anno o periodo') : ''}${!P.where ? todo('luogo') : ''}${!P.context ? todo('cos\'era il progetto') : ''}</div>`;
+  h += `<div class="blk"><h3>Il mio ruolo</h3>${P.role ? `<p class="role">${esc(P.role)}</p>` : todo('ruolo')}${P.quote ? `<p class="quote hand">“${esc(P.quote)}”</p>` : ''}</div>`;
+  h += `<div class="blk"><h3>Il processo</h3><ol class="proc">`;
+  STEPS.forEach(([key,label],i) => {
+    const txt = P.steps && P.steps[key];
+    const said = txt || STEP_DEFAULT[key];
+    h += `<li><canvas data-i="${i}" aria-hidden="true"></canvas><div><p class="t"><span>${i+1}</span>${label}</p><p class="d">${esc(said)}</p>${!txt && DRAFT ? todo('testo specifico per questo passo') : ''}</div></li>`;
+  });
+  h += `</ol></div>`;
+  if(P.numbers) h += `<div class="blk"><h3>In numeri</h3><p class="role">${esc(P.numbers)}</p></div>`;
+  else h += DRAFT ? `<div class="blk"><h3>In numeri</h3>${todo('numeri veri: artisti, serate, pubblico')}</div>` : '';
+  const links = (P.links || []).slice(); if(P.link) links.unshift({label: P.linkLabel || P.title, url: P.link});
+  if(links.length || P.instagram){
+    h += `<div class="blk"><h3>Il progetto fuori da qui</h3><div class="links">`;
+    links.forEach((L,k) => { let dom = ''; try { dom = new URL(L.url).hostname.replace(/^www\./,''); } catch(e){}
+      h += `<a class="linkcard" href="${esc(L.url)}" target="_blank" rel="noopener"><img data-link="${k+1}" alt=""><span><b>${esc(L.label || dom)}</b><small>${esc(dom)} ↗</small></span></a>`; });
+    if(P.instagram) h += `<div class="igbox" id="igbox"><div class="ig-cover"><img id="ig-img" alt=""><div><b>Guarda il post su Instagram</b><button class="btn" type="button" id="ig-load">Carica il post</button><small>Caricandolo, Instagram può salvare dei cookie nel tuo browser. <a href="${esc(P.instagram)}" target="_blank" rel="noopener">Oppure aprilo su Instagram ↗</a></small></div></div></div>`;
+    h += `</div></div>`;
+  } else h += DRAFT ? `<div class="blk"><h3>Il progetto fuori da qui</h3>${todo('link: Instagram del progetto, articoli, sito')}</div>` : '';
+  story.innerHTML = h;
+  // moduli dei passi: accesi se Elena c'era
+  story.querySelectorAll('.proc canvas').forEach(cv => {
+    const [key,,type] = STEPS[+cv.dataset.i], on = !!(P.steps && P.steps[key]);
+    const d = Math.min(devicePixelRatio||1,2), W = 51; cv.width = cv.height = W*d;
+    const x = cv.getContext('2d'); x.setTransform(d,0,0,d,0,0);
+    x.fillStyle = SHOCK; x.fillRect(0,0,W,W); mod(x,0,0,W,type,0,'#000');
+  });
+  story.querySelectorAll('img[data-link]').forEach(im => { im.onerror = () => { im.onerror = null; im.src = placeholder(sheetLi, 'link', `img/${sheetLi.dataset.slug}-link-${im.dataset.link}.jpg`); }; im.src = `img/${sheetLi.dataset.slug}-link-${im.dataset.link}.jpg`; });
+  const ii = document.getElementById('ig-img');
+  if(ii){ ii.onerror = () => { ii.onerror = null; ii.src = placeholder(sheetLi, 'link', `img/${sheetLi.dataset.slug}-ig.jpg`); }; ii.src = `img/${sheetLi.dataset.slug}-ig.jpg`;
+    document.getElementById('ig-load').addEventListener('click', () => loadInstagram(P.instagram)); }
+}
+function openSheet(li, push = true){
+  const P = PROJECTS[li.dataset.slug]; if(!P) return;
+  sheetLi = li; lastFocus = document.activeElement;
+  peek.classList.remove('on'); cur = null;
+  renderStory(P);
+  thumbs.innerHTML = '';
+  const n = +li.dataset.n;
+  document.querySelector('.sheet-grid').classList.toggle('nogal', !n);   // senza foto: solo il racconto
+  document.querySelector('.gal').hidden = !n;
+  if(n){
+    srcs(li).forEach((_,k) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', `Foto ${k+1}`); const im = document.createElement('img'); im.alt = ''; setImg(im, li, k); b.appendChild(im); b.onclick = () => galShow(k); thumbs.appendChild(b); });
+    galShow(0);
+  }
+  sheet.hidden = false; sheet.scrollTop = 0; document.body.classList.add('locked');
+  document.getElementById('sheet-close').focus();
+  if(push && location.hash !== '#'+li.dataset.slug) history.pushState(null, '', '#'+li.dataset.slug);
+}
+function closeSheet(fromHistory = false){
+  if(sheet.hidden) return;
+  sheet.hidden = true; document.body.classList.remove('locked');
+  if(!fromHistory && location.hash) history.pushState(null, '', location.pathname + location.search);
+  if(lastFocus) lastFocus.focus({preventScroll:true});
+}
+document.querySelectorAll('.ev li').forEach(li => {
+  if(!PROJECTS[li.dataset.slug]) return;
+  li.classList.add('has-sheet'); li.setAttribute('role','button');
+  li.setAttribute('aria-label', `${li.querySelector('b').textContent}: apri la scheda del progetto`);
+  li.addEventListener('click', () => openSheet(li));
+  li.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openSheet(li); } });
+});
+document.getElementById('sheet-close').addEventListener('click', () => closeSheet());
+document.getElementById('gal-prev').addEventListener('click', () => galShow(gi-1));
+document.getElementById('gal-next').addEventListener('click', () => galShow(gi+1));
+galImg.addEventListener('click', () => galShow(gi+1));
+addEventListener('keydown', e => {
+  if(sheet.hidden) return;
+  if(e.key==='Escape') closeSheet();
+  if(e.key==='ArrowRight') galShow(gi+1);
+  if(e.key==='ArrowLeft') galShow(gi-1);
+  if(e.key==='Tab'){ // il focus resta dentro la scheda
+    const f = [...sheet.querySelectorAll('button,a[href]')]; if(!f.length) return;
+    if(e.shiftKey && document.activeElement===f[0]){ e.preventDefault(); f[f.length-1].focus(); }
+    else if(!e.shiftKey && document.activeElement===f[f.length-1]){ e.preventDefault(); f[0].focus(); }
+  }
+});
+// swipe da telefono sulla foto
+let sx = null;
+galImg.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true});
+galImg.addEventListener('touchend', e => { if(sx===null) return; const dx = e.changedTouches[0].clientX - sx; if(Math.abs(dx) > 40) galShow(gi + (dx<0?1:-1)); sx = null; });
+// indirizzo diretto: .../#irpinia-mood apre la scheda
+function sheetSrc(slug){
+  const li = document.querySelector(`.ev li[data-slug="${CSS.escape(slug)}"]`); if(li) return li;
+  const P = PROJECTS[slug]; if(!P) return null;
+  // scheda senza riga nella lista: un elemento "fantasma" con gli stessi dati
+  const g = document.createElement('li'); g.dataset.slug = slug; g.dataset.n = (P.captions || []).length;
+  g.innerHTML = `<b>${esc(P.title)}</b>`; return g;
+}
+function fromHash(){ const src = sheetSrc(location.hash.slice(1)); if(src && PROJECTS[src.dataset.slug]) openSheet(src, false); else closeSheet(true); }
+addEventListener('popstate', fromHash);
+if(location.hash) fromHash();
+
+// post Instagram: si carica solo su richiesta
+function loadInstagram(url){
+  const box = document.getElementById('igbox'); if(!box) return;
+  box.innerHTML = `<blockquote class="instagram-media" data-instgrm-permalink="${esc(url)}" data-instgrm-version="14" style="margin:0;max-width:540px;width:100%"><a href="${esc(url)}" target="_blank" rel="noopener">Apri il post su Instagram ↗</a></blockquote>`;
+  if(window.instgrm) window.instgrm.Embeds.process();
+  else { const sc = document.createElement('script'); sc.async = true; sc.src = 'https://www.instagram.com/embed.js'; document.body.appendChild(sc); }
+}
+
+// ---- mappa delle connessioni ----
+(() => {
+  const NET = [
+    ['Artisti', ['Coco Maria','Generic Animal','Delicatoni','Samuel Cyma','Kuma','e oltre 15 progetti']],
+    ['Partner', ['Sometimes Collective','Orchestra Marchetti','management artisti']],
+    ['Tecnica', ['service','fonici','palco e luci']],
+    ['Clienti ed enti', ['PMI del territorio','Comune di Avellino','eventi privati']],
+    ['Team', ['founder','creativi','produzione']]
+  ];
+  const svg = document.getElementById('net-svg'), list = document.getElementById('net-list'), NSs = 'http://www.w3.org/2000/svg';
+  const el = (n, a={}) => { const e = document.createElementNS(NSs, n); for(const k in a) e.setAttribute(k, a[k]); return e; };
+  const cx = 390, cy = 295, R1 = 120, R2 = 230;
+  const gLines = el('g', {class:'draw-net'}); svg.appendChild(gLines);
+  let delay = 0;
+  NET.forEach(([name, subs], gi) => {
+    const a = -Math.PI/2 + gi * 2*Math.PI/NET.length;
+    const gx = cx + R1*Math.cos(a), gy = cy + R1*Math.sin(a);
+    const grp = el('g', {class:'node', tabindex:'0', role:'button', 'aria-label':`${name}: ${subs.join(', ')}`});
+    // linea tremolante centro → gruppo
+    const mx = (cx+gx)/2 + Math.sin(gi*2.3)*14, my = (cy+gy)/2 + Math.cos(gi*1.7)*14;
+    const main = el('path', {class:'ln main', d:`M${cx} ${cy} Q${mx} ${my} ${gx} ${gy}`, style:`--d:${delay}s`}); delay += .12;
+    grp.appendChild(main);
+    const spread = Math.min(1.15, .25*subs.length);
+    subs.forEach((sub, si) => {
+      const shift = Math.sin(a) > .6 ? (Math.cos(a) < 0 ? .32 : -.32) : 0; // i due gruppi in basso si aprono verso l'esterno
+      const b = a + shift + (subs.length===1 ? 0 : -spread/2 + spread*si/(subs.length-1));
+      const r = R2 + (si%2 ? 34 : -6);
+      const sx = cx + r*Math.cos(b), sy = cy + r*Math.sin(b);
+      const qx = (gx+sx)/2 + Math.sin(si+gi)*10, qy = (gy+sy)/2 + Math.cos(si*1.3+gi)*10;
+      grp.appendChild(el('path', {class:'ln', d:`M${gx} ${gy} Q${qx} ${qy} ${sx} ${sy}`, style:`--d:${delay}s`})); delay += .05;
+      grp.appendChild(el('circle', {class:'dot', cx:sx, cy:sy, r:4}));
+      const right = Math.abs(Math.sin(a)) > .6 && Math.abs(Math.cos(a)) > .2 ? (Math.cos(b) > Math.cos(a) + .02 || (Math.abs(Math.cos(b) - Math.cos(a)) <= .02 && Math.cos(a) > 0)) : Math.cos(b) >= -.15, t = el('text', {class:'sub', x: sx + (right ? 9 : -9), y: sy + 5, 'text-anchor': right ? 'start' : 'end'});
+      t.textContent = sub; grp.appendChild(t);
+    });
+    // etichetta del gruppo, su una targhetta
+    const lbl = el('text', {class:'grp', x:gx, y:gy+6, 'text-anchor':'middle'}); lbl.textContent = name;
+    grp.appendChild(lbl);
+    svg.appendChild(grp);
+    requestAnimationFrame(() => { const bb = lbl.getBBox(); const bg = el('rect', {x:bb.x-8, y:bb.y-4, width:bb.width+16, height:bb.height+8, fill:'#7B1FFF', stroke:'#000', 'stroke-width':2}); grp.insertBefore(bg, lbl); });
+    const on = () => { svg.classList.add('focus'); grp.classList.add('on'); }, off = () => { svg.classList.remove('focus'); grp.classList.remove('on'); };
+    grp.addEventListener('mouseenter', on); grp.addEventListener('mouseleave', off); grp.addEventListener('focus', on); grp.addEventListener('blur', off);
+    list.insertAdjacentHTML('beforeend', `<h4>${name}</h4><p>${subs.map(x => `<span>${x}</span>`).join('')}</p>`);
+  });
+  // le linee principali restano dentro i gruppi: le sposto nel livello da disegnare solo per l'animazione
+  svg.querySelectorAll('.ln').forEach(p => p.style.setProperty('--len', Math.ceil(p.getTotalLength())+1));
+  svg.querySelectorAll('.node').forEach(g => g.classList.add('draw-net'));
+  // io al centro
+  const me = el('g'); me.appendChild(el('circle', {cx, cy, r:46, fill:'#000'}));
+  const t = el('text', {class:'me', x:cx, y:cy+10, 'text-anchor':'middle', fill:'#fff', style:'fill:#fff'}); t.textContent = 'Elena'; me.appendChild(t);
+  svg.appendChild(me);
+  const sec = document.querySelector('.grow');
+  if('IntersectionObserver' in window){ new IntersectionObserver((es,o) => es.forEach(e => { if(e.isIntersecting){ sec.classList.add('in'); o.disconnect(); } }), {threshold:.25}).observe(sec); } else sec.classList.add('in');
+})();
+
+// salti diretti dalle esperienze alle schede
+document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => {
+  const src = sheetSrc(b.dataset.open); if(src) openSheet(src);
+}));
+// la freccia si disegna quando la fascia entra nello schermo
+const teaser = document.querySelector('.teaser');
+teaser.querySelectorAll('.arrow path').forEach(p => p.style.setProperty('--len', Math.ceil(p.getTotalLength())+1));
+if('IntersectionObserver' in window){ new IntersectionObserver((es,o) => es.forEach(e => { if(e.isIntersecting){ teaser.classList.add('in'); o.disconnect(); } }), {threshold:.4}).observe(teaser); } else teaser.classList.add('in');
+
 
 /* ---- cambio colore ---- */
 document.querySelectorAll('.swatches button').forEach(b => b.addEventListener('click', () => {
